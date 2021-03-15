@@ -88,15 +88,13 @@ $AccountQuery = mysqli_query($conn, "SELECT * FROM `ec_users` WHERE `USERNAME` =
 $Account = mysqli_num_rows($AccountQuery);
 if ($Account < 1)
 {
+    RegisteringFunctions::RegisterUser($username, $password2, $email, $gender)
     // Note: Soon i will update to bcrypt.
-    $gosted = hash('gost', $pre_password);
-    $password = hash('whirlpool', $gosted);
-    $time = time();
+
     
     // Note: removed random string code due it being useless.
 
-    setcookie('EPICNAME', $username, time() + 259200, '/');
-    setcookie('EPICPASS', $password, time() + 259200, '/');
+
 
     echo "<script>window.location='/Dashboard/'</script>";
 }
